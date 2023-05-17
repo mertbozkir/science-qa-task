@@ -29,12 +29,6 @@ def execute(request: SimpleText, ray: OpenfabricExecutionRay) -> SimpleText:
             qa = SimpleQA(INDEXDIR, framework ="pt")
 
         except Exception:
-
-            from sklearn.datasets import fetch_20newsgroups
-            remove = ('headers', 'footers', 'quotes')
-            newsgroups_train = fetch_20newsgroups(subset='train', remove=remove)
-            newsgroups_test = fetch_20newsgroups(subset='test', remove=remove)
-            docs = newsgroups_train.data +  newsgroups_test.data
             docs = np.load('merged_dataset.npy')
 
             SimpleQA.initialize_index(INDEXDIR)
